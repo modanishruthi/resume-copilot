@@ -1,0 +1,96 @@
+project_suggestions = {
+    "python": "Build a CLI tool or automation script using Python",
+    "machine learning": "Build a disease prediction system using sklearn",
+    "deep learning": "Build an image classifier using CNN",
+    "numpy": "Implement linear algebra operations from scratch using NumPy",
+    "pandas": "Do EDA on a Kaggle dataset and publish findings",
+    "scikit-learn": "Build an end to end ML pipeline with sklearn",
+    "tensorflow": "Build a handwritten digit recognizer using TensorFlow",
+    "pytorch": "Build a text classifier using PyTorch",
+    "nlp": "Build a sentiment analyzer on product reviews",
+    "sql": "Build a student database management system",
+    "git": "Contribute to an open source project on GitHub",
+    "statistics": "Do a statistical analysis project on real world data",
+    "data visualization": "Build an interactive dashboard using Matplotlib and Seaborn",
+    "feature engineering": "Participate in a Kaggle competition focusing on feature engineering",
+    "tableau": "Build a sales analytics dashboard in Tableau",
+    "power bi": "Build a business intelligence report in Power BI",
+    "excel": "Build a financial tracker with pivot tables and charts",
+    "mysql": "Build a library management system with MySQL",
+    "postgresql": "Build a REST API with Flask and PostgreSQL",
+    "java": "Build a banking system using Java OOP concepts",
+    "c++": "Build a data structures library in C++",
+    "data structures": "Solve 50 DSA problems on LeetCode focusing on arrays and trees",
+    "algorithms": "Implement sorting and searching algorithms from scratch",
+    "os": "Build a simple shell or process scheduler simulation",
+    "networking": "Build a simple chat application using sockets",
+    "object oriented programming": "Build an inventory management system using OOP",
+    "html": "Build a responsive portfolio website",
+    "css": "Build a UI clone of a popular website",
+    "javascript": "Build a to-do list app with vanilla JavaScript",
+    "react": "Build a weather app using React and an API",
+    "nodejs": "Build a REST API using Node.js and Express",
+    "mongodb": "Build a blog application with Node.js and MongoDB",
+    "rest api": "Build and document a REST API for a simple application",
+    "spark": "Process a large dataset using Apache Spark",
+    "hadoop": "Build a word count program using Hadoop MapReduce",
+    "airflow": "Build a data pipeline using Apache Airflow",
+    "kafka": "Build a real time data streaming pipeline using Kafka",
+    "aws": "Deploy a web application on AWS EC2",
+    "docker": "Containerize your existing project using Docker",
+    "etl": "Build an ETL pipeline to process and load data into a database"
+}
+
+roadmap_suggestion = {
+    "python": "Learn syntax → functions → OOP → file handling → libraries",
+    "machine learning": "Learn statistics → sklearn → supervised learning → model evaluation",
+    "deep learning": "Learn neural networks → backpropagation → CNNs → RNNs → PyTorch",
+    "numpy": "Learn arrays → indexing → broadcasting → linear algebra operations",
+    "pandas": "Learn dataframes → groupby → merging → handling missing data",
+    "scikit-learn": "Learn preprocessing → model training → pipelines → cross validation",
+    "tensorflow": "Learn tensors → keras API → building models → training loops",
+    "pytorch": "Learn tensors → autograd → neural networks → training → deployment",
+    "nlp": "Learn text preprocessing → NLTK → spaCy → TF-IDF → transformers",
+    "sql": "Learn SELECT → JOINs → subqueries → indexes → stored procedures",
+    "git": "Learn init → commit → branches → merge → pull requests → GitHub",
+    "statistics": "Learn probability → distributions → hypothesis testing → regression",
+    "data visualization": "Learn Matplotlib → Seaborn → Plotly → storytelling with data",
+    "feature engineering": "Learn encoding → scaling → feature selection → dimensionality reduction",
+    "tableau": "Learn connecting data → charts → dashboards → calculated fields",
+    "power bi": "Learn data modeling → DAX → visualizations → publishing reports",
+    "excel": "Learn formulas → pivot tables → VLOOKUP → macros → charts",
+    "mysql": "Learn DDL → DML → joins → transactions → stored procedures",
+    "postgresql": "Learn advanced SQL → JSON support → full text search → indexing",
+    "java": "Learn syntax → OOP → collections → exception handling → multithreading",
+    "c++": "Learn syntax → pointers → OOP → STL → memory management",
+    "data structures": "Learn arrays → linked lists → stacks → queues → trees → graphs",
+    "algorithms": "Learn sorting → searching → recursion → dynamic programming → greedy",
+    "os": "Learn processes → threads → scheduling → memory management → file systems",
+    "networking": "Learn OSI model → TCP/IP → HTTP → DNS → sockets",
+    "object oriented programming": "Learn classes → inheritance → polymorphism → encapsulation → abstraction",
+    "html": "Learn structure → semantic tags → forms → accessibility → SEO basics",
+    "css": "Learn selectors → flexbox → grid → animations → responsive design",
+    "javascript": "Learn DOM → events → async → fetch API → ES6 features",
+    "react": "Learn components → props → state → hooks → routing → API calls",
+    "nodejs": "Learn modules → express → middleware → authentication → deployment",
+    "mongodb": "Learn documents → CRUD → aggregation → indexing → mongoose",
+    "rest api": "Learn HTTP methods → status codes → authentication → documentation → testing",
+    "spark": "Learn RDDs → DataFrames → Spark SQL → MLlib → streaming",
+    "hadoop": "Learn HDFS → MapReduce → YARN → Hive → Pig",
+    "airflow": "Learn DAGs → operators → scheduling → monitoring → best practices",
+    "kafka": "Learn producers → consumers → topics → partitions → stream processing",
+    "aws": "Learn EC2 → S3 → RDS → Lambda → IAM → deployment",
+    "docker": "Learn containers → images → Dockerfile → volumes → docker compose",
+    "etl": "Learn extraction → transformation → loading → data warehousing → scheduling"
+}
+
+
+def get_recommendations(missing_skills):
+    projects=[]
+    roadmap=[]
+    for i in missing_skills:
+        if i in project_suggestions:
+            projects.append(project_suggestions[i])
+        if i in roadmap_suggestion:
+            roadmap.append(roadmap_suggestion[i])
+    return projects, roadmap

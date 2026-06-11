@@ -1,0 +1,23 @@
+{
+    "ml_engineer":[ "python", "machine learning", "deep learning",
+    "numpy", "pandas", "scikit-learn", "tensorflow",
+    "pytorch", "nlp", "sql", "git", "statistics",
+    "data visualization", "feature engineering"],
+    "data_analyst":["python", "sql", "excel",  "tableau", "power bi",
+    "pandas", "numpy", "statistics", "data visualization",
+    "mysql", "postgresql"
+  ],
+  "software_engineer": [
+    "python", "java", "c++", "data structures",
+    "algorithms", "sql", "git", "os", "networking",
+    "object oriented programming"
+  ],
+  "web_developer": [
+    "html", "css", "javascript", "react",
+    "nodejs", "sql", "git", "rest api", "mongodb"
+  ],
+  "data_engineer": [
+    "python", "sql", "spark", "hadoop", "airflow",
+    "kafka", "aws", "docker", "postgresql", "etl"
+  ]
+}
