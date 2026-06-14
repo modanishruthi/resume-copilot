@@ -1,6 +1,7 @@
 import streamlit as st
 import pdfplumber
 from jd_matcher import analyze_resume_vs_jd
+from score import section_wise_score
 
 from skill_extractor import extract_skills, get_skill_gap
 from score import resume_score
@@ -58,6 +59,17 @@ if uploaded_file is not None:
         st.progress(Atsscore/100)
         st.write(f"{Atsscore}/100")
 
+    st.subheader("Section-wise Score:")
+    section_score=section_wise_score(text,role)
+    for section, score in section_score.items():
+        col_a, col_b = st.columns([1, 3])
+        with col_a:
+            st.write(f'{section}')
+        with col_b:
+            st.progress(score / 100)
+            st.write(f"{score}/100")
+    st.divider()
+
     if jd_text.strip():
         st.subheader("🎯 Resume vs Job Description Match")
         with st.spinner("Analyzing match using sentence embeddings.."):
@@ -85,7 +97,7 @@ if uploaded_file is not None:
     st.divider()
     st.subheader("📚 Learning Roadmap:")
     for road in roadmap:
-        st.write(f"• {roadmap}")
+        st.write(f"• {road}")
   
 
     
