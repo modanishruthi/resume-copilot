@@ -1,5 +1,6 @@
 import streamlit as st
 import pdfplumber
+from jd_matcher import analyze_resume_vs_jd
 
 from skill_extractor import extract_skills, get_skill_gap
 from score import resume_score
@@ -21,7 +22,11 @@ st.sidebar.write("Built with Python + Streamlit + NLP")
 
 role= st.selectbox("Select Target Role:", ["ml_engineer", "data_analyst", "software_engineer", 
      "web_developer", "data_engineer"])
-
+jd_text = st.text_area(
+    "Paste Job Description (optional) - for a more accurate, role-specific match",
+    height=150,
+    placeholder="Paste the job description here to compare your resume against it..."
+)
 uploaded_file= st.file_uploader("Upload Resume (PDF only)", type=["pdf"])
 
 
@@ -52,7 +57,26 @@ if uploaded_file is not None:
         st.subheader("🤖 ATS Score:")
         st.progress(Atsscore/100)
         st.write(f"{Atsscore}/100")
-    st.divider()
+
+    if jd_text.strip():
+        st.subheader("🎯 Resume vs Job Description Match")
+        with st.spinner("Analyzing match using sentence embeddings.."):
+            jd_result=analyze_resume_vs_jd(text, jd_text)
+        
+        st.progress(jd_result["match_score"]/100)
+        st.write(f"**Match Score: {jd_result['match_score']}%**")
+
+        if jd_result["missing_terms"]:
+            st.write("Terms in the Job Description that don't appear in your resume")
+            for term in jd_result["missing_terms"]:
+                st.badge(term)
+
+        else:
+            st.write("No major gaps found against this JD. 🎉")
+
+        st.divider()
+
+
 
     projects,roadmap=get_recommendations(gap)
     st.subheader("🔨 Suggested Projects:")
