@@ -2,6 +2,7 @@ import streamlit as st
 import pdfplumber
 from jd_matcher import analyze_resume_vs_jd
 from score import section_wise_score
+from skill_extractor import get_categorized_skill_gap
 
 from skill_extractor import extract_skills, get_skill_gap
 from score import resume_score
@@ -42,11 +43,31 @@ if uploaded_file is not None:
     for skill in skills:
         st.badge(skill)
     st.divider()
+
+    # gap=get_skill_gap(text, role)
+    # st.subheader("❌ Missing Skills:")
+    # for skill in gap:
+    #     st.badge(skill)
+    # st.divider()
     gap=get_skill_gap(text, role)
-    st.subheader("❌ Missing Skills:")
-    for skill in gap:
-        st.badge(skill)
+    critical_missing, nice_to_have_missing=get_categorized_skill_gap(text, role)
+    st.subheader("🔴 Critical Missing Skills:")
+    if critical_missing:
+        for skill in critical_missing:
+            st.badge(skill)
+    else:
+        st.write("No critical skills missing! 🎉")
+
+    st.subheader("🟡 Recommended Skills:")
+
+    if nice_to_have_missing:
+        for skill in nice_to_have_missing:
+            st.badge(skill)
+    else:
+        st.write("No nice-to-have skills missing! 🎉")
+        
     st.divider()
+
     score=resume_score(role, text)
     Atsscore=ats_score(role, text)
     col1, col2 = st.columns(2)
@@ -100,4 +121,4 @@ if uploaded_file is not None:
         st.write(f"• {road}")
   
 
-    
+

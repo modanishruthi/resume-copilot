@@ -1,0 +1,7 @@
+{
+    "ml_engineer": ["python", "machine learning", "deep learning", "scikit-learn"],
+    "data_analyst": ["python", "sql", "pandas", "statistics"],
+    "software_engineer": ["python", "java", "data structures", "algorithms"],
+    "web_developer": ["html", "css", "javascript", "react"],
+    "data_engineer": ["python", "sql", "spark", "etl"]
+}
