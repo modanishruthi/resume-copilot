@@ -8,6 +8,10 @@ from score import resume_score
 from recommender import get_recommendations
 from ATS_score import ats_score
 import plotly.graph_objects as go
+from database import init_db, save_analysis, get_all_history
+
+init_db()
+
 
 
 
@@ -39,7 +43,7 @@ if uploaded_file is not None:
     text=extract_file(uploaded_file)
     
     st.success("Resume uploaded successfully")
-    tab1, tab2, tab3, tab4 = st.tabs(["📊 Overview", "🛠️ Skills", "🎯 JD Match", "📚 Roadmap"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Overview", "🛠️ Skills", "🎯 JD Match", "📚 Roadmap", "📜 History"])
    
     skills = extract_skills(text)
     with tab2:
@@ -86,6 +90,7 @@ if uploaded_file is not None:
             
     score=resume_score(role, text)
     Atsscore=ats_score(role, text)
+    save_analysis(role, score, Atsscore, section_score)
     
     with tab1:
         col1, col2=st.columns(2)
@@ -212,3 +217,13 @@ if uploaded_file is not None:
                 st.write(f"• {point}")
         else:
             st.success("Excellent! No major weaknesses detected.")
+            
+    with tab5:
+        st.subheader("📜 Your Resume Analysis History")
+        history = get_all_history()
+
+        if history:
+            for row in history:
+                st.write(f"**{row[1]}** | Role: {row[2]} | Resume Score: {row[3]}/100 | ATS Score: {row[4]}/100")
+        else:
+            st.write("No history yet. Upload a resume to start tracking!")
